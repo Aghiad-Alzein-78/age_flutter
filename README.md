@@ -1,6 +1,7 @@
 # age_flutter
 
-> In Flutter packages there is a package called age 
+> In Flutter packages, there is a package called age 
+[https://pub.dev/packages/age](https://link)
 for calculating the age between two different dates.
 
 This package is used in many tutorials 
@@ -8,5 +9,5 @@ This package is used in many tutorials
 Unfortunately the original package doesn't support the nullability in dart till 
 ***01/09/2021***.
 
-This my try to solve the problem by re
+This my try to solve the problem by rewrite the package.
 
