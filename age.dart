@@ -7,7 +7,7 @@ class AgeDuration {
 
   @override
   String toString() {
-    return "years:${this.years} months:${this.months} days:${this.days}";
+    return "Years: ${this.years} , Months: ${this.months} , Days: ${this.days}";
   }
 }
 
@@ -54,11 +54,11 @@ class Age {
     } else {
       days = endDate.day - startDate.day;
     }
-    if (startDate.month > endDate.month) {
+    if (startDate.month > endDate.month + months) {
       years = -1;
       months += ((12 + endDate.month) - startDate.month);
     } else {
-      months = endDate.month - startDate.month;
+      months += endDate.month - startDate.month;
     }
     years += (endDate.year - startDate.year);
     return AgeDuration(years: years, months: months, days: days);
@@ -67,5 +67,5 @@ class Age {
 
 void main() {
   print(Age.dateDifference(
-      startDate: DateTime(1978, 01, 15), endDate: DateTime.now()));
+      startDate: DateTime(1985, 09, 04), endDate: DateTime.now()));
 }
