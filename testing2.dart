@@ -17,25 +17,80 @@ class MyDuration {
   static const int secondsPerHour = secondsPerMinute * minutesPerHour;
   static const int secondsPerDay = secondsPerHour * hoursPerDay;
   static const int minutesPerDay = minutesPerHour * hoursPerDay;
-  final int duration;
-  const MyDuration.microseconds(this.duration);
+  final int _duration;
+  const MyDuration.microSeconds(this._duration);
   const MyDuration(
-      {int days = 0,
-      int hours = 0,
-      int minutes = 0,
-      int seconds = 0,
-      int milliseconds = 0,
-      int microseconds = 0})
-      : this.microseconds(microsecondsPerDay * days +
+      {int days: 0,
+      int hours: 0,
+      int minutes: 0,
+      int seconds: 0,
+      int millisconds: 0,
+      int microsconds: 0})
+      : this.microSeconds(microsecondsPerDay * days +
             microsecondsPerHour * hours +
             microsecondsPerMinute * minutes +
             microsecondsPerSecond * seconds +
-            microsecondsPerMillisecond * milliseconds +
-            microseconds);
+            microsecondsPerMillisecond * millisconds +
+            microsconds);
+
+  MyDuration operator +(MyDuration other) {
+    return MyDuration.microSeconds(this._duration + other._duration);
+  }
+
+  MyDuration operator -(MyDuration other) {
+    return MyDuration.microSeconds(this._duration - other._duration);
+  }
+
+  // MyDuration operator *(MyDuration other) {
+  //   return MyDuration.microSeconds(this._duration * other._duration);
+  // }
+
+  // MyDuration operator ~/(MyDuration other) {
+  //   return MyDuration.microSeconds(this._duration ~/ other._duration);
+  // }
+
+  bool operator >(MyDuration other) {
+    return this._duration > other._duration;
+  }
+
+  bool operator ==(Object other) {
+    return other is MyDuration && this._duration == other._duration;
+  }
+
+  bool operator >=(MyDuration other) {
+    return this._duration >= other._duration;
+  }
+
+  bool operator <(MyDuration other) {
+    return this._duration < other._duration;
+  }
+
+  bool operator <=(MyDuration other) {
+    return this._duration <= other._duration;
+  }
+
+  int get hashCode => this._duration.hashCode;
+
+  int get inMicroseconds => _duration;
+  int get inMilliseconds => _duration ~/ microsecondsPerMillisecond;
+  int get inSeconds => _duration ~/ microsecondsPerSecond;
+  int get inHours => _duration ~/ microsecondsPerHour;
+  int get inMinutes => _duration ~/ microsecondsPerMinute;
+  int get inDays => _duration ~/ microsecondsPerDay;
 }
 
 void main() {
-  var period = MyDuration(days: 10);
-  print(MyDuration.microsecondsPerDay);
-  print(period.duration);
+  var period1 = MyDuration(days: 10);
+  var period2 = MyDuration(days: 10);
+  int dHours = (period1 + period2).inHours;
+  int dMinutes = (period1 + period2).inMinutes;
+  int dDays = (period1 + period2).inDays;
+  MyDuration periodTester = MyDuration.microSeconds(15000);
+  print("Hours = ${periodTester.inMilliseconds}");
+  print(dHours);
+  print(dMinutes);
+  print(dDays);
+  print(period1 == period2);
+  print(period1.hashCode);
+  print(period2.hashCode);
 }
