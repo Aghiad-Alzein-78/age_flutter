@@ -67,9 +67,29 @@ class Age {
       return null;
     }
   }
-}
 
-void main() {
-  print(Age.dateDifference(
-      startDate: DateTime(1985, 09, 04), endDate: DateTime.now()));
+  static DateTime? add(
+      {required DateTime? date, required AgeDuration? duration}) {
+    if (date != null && duration != null) {
+      int years =
+          date.year + duration.years + ((date.month + duration.months) ~/ 12);
+      int months = (date.month + duration.months) % 12;
+      int days = date.day + duration.days - 1;
+      return DateTime(years, months, 1).add(Duration(days: days));
+    } else {
+      return null;
+    }
+  }
+
+  static DateTime? subtract(
+      {required DateTime? date, required AgeDuration? duration}) {
+    if (date != null && duration != null) {
+      duration.days *= -1;
+      duration.months *= -1;
+      duration.years *= -1;
+      return add(date: date, duration: duration);
+    } else {
+      return null;
+    }
+  }
 }
