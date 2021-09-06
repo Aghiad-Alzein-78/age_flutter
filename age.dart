@@ -44,7 +44,7 @@ class Age {
   }
 
   static AgeDuration? dateDifference(
-      {required DateTime? startDate, required DateTime? endDate}) {
+      {required DateTime? fromDate, required DateTime? toDate}) {
     if (startDate != null && endDate != null) {
       int years = 0, months = 0, days = 0;
       if (startDate.day > endDate.day) {
